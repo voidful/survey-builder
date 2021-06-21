@@ -47,8 +47,9 @@ def make_app(static_dir: str = None) -> Flask:
     def get_survey_list():
         surveys = []
         for file in nlp2.get_files_from_dir('./surveys/'):
-            file_name = Path(file).stem
-            surveys.append({"value": file_name, "label": file_name})
+            if ".json" in file:
+                file_name = Path(file).stem
+                surveys.append({"value": file_name, "label": file_name})
         return jsonify(surveys)
 
     @app.route('/get_survey', methods=['GET'])
