@@ -7,6 +7,10 @@ React + survey JS
 - multiple 
 - dynamic update
 
+## environment install
+- `npm install`
+- `pip install -r requirements.txt`
+
 ## Usage:
 1. git clone this project
 2. create `surveys` folder under the project

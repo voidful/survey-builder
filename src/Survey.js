@@ -2,6 +2,7 @@ import React from "react";
 import * as Survey from "survey-react";
 import * as widgets from "surveyjs-widgets";
 import "survey-react/survey.css";
+import './index.css';
 
 import "jquery-ui/themes/base/all.css";
 import "nouislider/distribute/nouislider.css";
@@ -16,6 +17,7 @@ import "select2/dist/js/select2.js";
 import "jquery-bar-rating";
 
 import "pretty-checkbox/dist/pretty-checkbox.css";
+import {LandingPage} from "./Landing";
 
 window["$"] = window["jQuery"] = $;
 
@@ -39,6 +41,7 @@ class SurveyPage extends React.Component {
         super(props);
         this.state = {
             model: {},
+            loading: true
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.onComplete = this.onComplete.bind(this);
@@ -67,7 +70,8 @@ class SurveyPage extends React.Component {
         fetch(window.location.origin + "/get_survey?id=" + this.props.id)
             .then(response => response.json())
             .then(data => this.setState({
-                model: data
+                model: data,
+                loading: false
             }))
     }
 
@@ -76,15 +80,23 @@ class SurveyPage extends React.Component {
         return (
             <div className="container">
                 <h2>human evaluation</h2>
-                <Survey.Survey
-                    model={new Survey.Model(this.state.model)}
-                    onComplete={this.onComplete}
-                    onValueChanged={this.onValueChanged}
-                />
+                {this.state.loading ? (
+                        <div className="loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    ) :
+                    <Survey.Survey
+                        model={new Survey.Model(this.state.model)}
+                        onComplete={this.onComplete}
+                        onValueChanged={this.onValueChanged}
+                    />}
             </div>
         );
     }
-
 }
 
 export {SurveyPage}

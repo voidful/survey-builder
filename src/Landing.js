@@ -1,13 +1,15 @@
 import React from 'react'
 import Select from 'react-select'
-
+import './index.css';
+import * as Survey from "survey-react";
 
 class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            options: []
+            options: [],
+            loading: true
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,7 +24,8 @@ class LandingPage extends React.Component {
         fetch(window.location.origin + "/get_survey_list")
             .then(response => response.json())
             .then(data => this.setState({
-                options: data.sort((a, b) => a.value - b.value)
+                options: data.sort((a, b) => a.value - b.value),
+                loading: false
             }))
     }
 
@@ -37,11 +40,20 @@ class LandingPage extends React.Component {
 
         return (
             <div className="container">
-                <Select
-                    value={selectedOption}
-                    onChange={this.handleChange}
-                    options={this.state.options}
-                />
+                {this.state.loading ? (
+                        <div className="loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    ) :
+                    <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={this.state.options}
+                    />}
             </div>
         );
     }
