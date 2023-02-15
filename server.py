@@ -84,9 +84,10 @@ def main(args):
     app = make_app(static_dir=args.static_dir)
     CORS(app)
 
-    print("server started")
+    print("server started in port: ", args.port)
     http_server = WSGIServer(('0.0.0.0', args.port), app)
     http_server.serve_forever()
+
 
 
 if __name__ == "__main__":

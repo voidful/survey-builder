@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 import './index.css';
-import * as Survey from "survey-react";
 
 class LandingPage extends React.Component {
 
@@ -9,7 +8,7 @@ class LandingPage extends React.Component {
         super(props);
         this.state = {
             options: [],
-            loading: true
+            loading: false
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -49,11 +48,19 @@ class LandingPage extends React.Component {
                             <span></span>
                         </div>
                     ) :
-                    <Select
-                        value={selectedOption}
-                        onChange={this.handleChange}
-                        options={this.state.options}
-                    />}
+                    <div>
+                        <Select
+                            value={selectedOption}
+                            onChange={this.handleChange}
+                            options={this.state.options}
+                        />
+                        <br></br>
+                        <p>Or</p>
+                        <button className="btn btn-primary"
+                                onClick={() => this.selected(Math.floor(Math.random() * this.state.options.length) + 1)}>
+                            Random Pick a Survey
+                        </button>
+                    </div>}
             </div>
         );
     }
