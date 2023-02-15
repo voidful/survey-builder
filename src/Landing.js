@@ -22,10 +22,16 @@ class LandingPage extends React.Component {
         this.setState({isLoading: true});
         fetch(window.location.origin + "/get_survey_list")
             .then(response => response.json())
-            .then(data => this.setState({
-                options: data.sort((a, b) => a.value - b.value),
-                loading: false
-            }))
+            .then(data => {
+                let options = data.sort((a, b) => a.value - b.value);
+                this.setState({
+                    options: options
+                }, () => {
+                    this.setState({
+                        loading: false
+                    })
+                })
+            })
     }
 
     handleChange = (selectedOption) => {

@@ -8,7 +8,7 @@ React + survey JS
 - dynamic update
 
 ## environment install
-- `npm install`
+- `yarn install`
 - `pip install -r requirements.txt`
 
 ## Usage:

@@ -1,2 +1,2 @@
-react-scripts build
+yarn build
 python server.py
