@@ -17,7 +17,6 @@ import "select2/dist/js/select2.js";
 import "jquery-bar-rating";
 
 import "pretty-checkbox/dist/pretty-checkbox.css";
-import {LandingPage} from "./Landing";
 
 window["$"] = window["jQuery"] = $;
 
@@ -56,7 +55,7 @@ class SurveyPage extends React.Component {
         console.log("Complete! " + JSON.stringify(result.data));
         fetch(window.location.origin + "/result", {
             method: 'POST',
-            body: JSON.stringify(result.data),
+            body: JSON.stringify({'user_response': result.data, 'content': this.state.model}),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
