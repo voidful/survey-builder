@@ -63,9 +63,10 @@ class LandingPage extends React.Component {
                         <br></br>
                         <p>Or</p>
                         <button className="btn btn-primary"
-                                onClick={() => this.selected(Math.floor(Math.random() * this.state.options.length) + 1)}>
+                                onClick={() => this.selected(this.state.options[Math.floor(Math.random() * this.state.options.length)].label)}>
                             Random Pick a Survey
                         </button>
+
                     </div>}
             </div>
         );
