@@ -1,38 +1,8 @@
 import React from "react";
-import * as Survey from "survey-react";
-import * as widgets from "surveyjs-widgets";
-import "survey-react/survey.css";
-import './index.css';
 
-import "jquery-ui/themes/base/all.css";
-import "nouislider/distribute/nouislider.css";
-import "select2/dist/css/select2.css";
-import "bootstrap-slider/dist/css/bootstrap-slider.css";
-
-import "jquery-bar-rating/dist/themes/css-stars.css";
-
-import $ from "jquery";
-import "jquery-ui/ui/widgets/datepicker.js";
-import "select2/dist/js/select2.js";
-import "jquery-bar-rating";
-
-import "pretty-checkbox/dist/pretty-checkbox.css";
-
-window["$"] = window["jQuery"] = $;
-
-Survey.StylesManager.applyTheme("default");
-widgets.prettycheckbox(Survey);
-widgets.select2(Survey, $);
-widgets.inputmask(Survey);
-widgets.jquerybarrating(Survey, $);
-widgets.jqueryuidatepicker(Survey, $);
-widgets.nouislider(Survey);
-widgets.select2tagbox(Survey, $);
-widgets.sortablejs(Survey);
-widgets.ckeditor(Survey);
-widgets.autocomplete(Survey, $);
-widgets.bootstrapslider(Survey);
-
+import 'survey-core/defaultV2.min.css';
+import {Model} from 'survey-core';
+import {Survey} from 'survey-react-ui';
 
 class SurveyPage extends React.Component {
 
@@ -88,11 +58,12 @@ class SurveyPage extends React.Component {
                             <span></span>
                         </div>
                     ) :
-                    <Survey.Survey
-                        model={new Survey.Model(this.state.model)}
+                    <Survey
+                        model={new Model(this.state.model)}
                         onComplete={this.onComplete}
                         onValueChanged={this.onValueChanged}
-                    />}
+                    />
+                }
             </div>
         );
     }
